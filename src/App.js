@@ -1,35 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
 import { LanguageContextProvider } from './contexts/LanguageContext';
 import { AuthContextProvider } from './contexts/AuthContext'
-import styled from 'styled-components'
 import Navbar from './components/Navbar';
-import Login from './components/Login'
+import Container from './components/container'
 
 
-class App extends Component {
-  render() {
-    return (
+const App = () => {
+  return (
+    <Router>
       <div className="App">
-      <AuthContextProvider>
-       <LanguageContextProvider>
-        <Navbar />
-        <Container>
-          <Login />
-        </Container>
-       </LanguageContextProvider>
-       </AuthContextProvider>
+        <AuthContextProvider>
+        <LanguageContextProvider>
+          <Navbar />
+          <Container />
+        </LanguageContextProvider>
+      </AuthContextProvider>
       </div>
-    );
-  }
+  </Router>
+  )
 }
 
-const Container = styled.div`
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto', sans-serif !important;
-`
 
 export default App;

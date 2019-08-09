@@ -41,6 +41,7 @@ export const AuthContextProvider = ({ children }) => {
                 case 200: {
                     console.log('good to go')
                     setAuthenticated(true)
+                    setErrorType(null)
                     break;
                 }
                 case 401:{
@@ -64,7 +65,8 @@ export const AuthContextProvider = ({ children }) => {
         } catch(err){
             setLoading(false)
             setAuthenticated(false);
-            throw new err;
+            setErrorType('serverError');
+            throw err;
         }
     }
 

@@ -37,7 +37,6 @@ const Login = () => {
         }
        login(params);
     }
-    console.log('logged in', authenticated)
     return (
         <Wrapper>
             <Title>Log in</Title>
