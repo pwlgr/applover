@@ -2,12 +2,17 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from '../contexts/AuthContext';
 import Login from './Login';
-import Main from './main'
+import Main from './main';
 
+
+const getCookie = name => {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
 const Container = () => {
-    const { authenticated, token } = useContext(AuthContext);
+    const { authenticated } = useContext(AuthContext);
     return (
-        <Wrapper>{authenticated || token ? <Main /> : <Login />}
+        <Wrapper>{authenticated || getCookie('auth_token') ? <Main /> : <Login />}
         </Wrapper>
     )
 }

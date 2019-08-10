@@ -13,9 +13,6 @@ const headers = {
 
 const url = 'https://bench-api.applover.pl/api/v1/login';
 
-const getStatusType = (status) => Number(status.slice(0,3));
-
-const token = localStorage.getItem('token');
 
 const errors = {
     invalidBody: {
@@ -39,12 +36,13 @@ export const AuthContextProvider = ({ children }) => {
                 body: JSON.stringify(body)
             });
             const data = await response.json();
-            switch(getStatusType(data.status)){
+            switch(response.status){
                 case 200: {
                     setAuthenticated(true)
                     setErrorType(null)
-                    console.log(data.token)
-                    keepLoggedIn && localStorage.setItem('token', data.token);
+                    if(keepLoggedIn){
+                        document.cookie =`auth_token=${data.token}`;
+                    }
                     break;
                 }
                 case 401:{
@@ -81,7 +79,6 @@ export const AuthContextProvider = ({ children }) => {
         isLoading,
         error: errors[errorType],
         closeError,
-        token
     };
 
 
@@ -91,3 +88,5 @@ export const AuthContextProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 };
+
+

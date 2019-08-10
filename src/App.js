@@ -13,11 +13,11 @@ const App = () => {
     <Router>
       <div className="App">
         <AuthContextProvider>
-        <LanguageContextProvider>
-          <Navbar />
-          <Container />
-        </LanguageContextProvider>
-      </AuthContextProvider>
+          <LanguageContextProvider>
+            <Navbar />
+            <Container />
+          </LanguageContextProvider>
+        </AuthContextProvider>
       </div>
     </Router>
   )

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Dropdown, Menu } from 'semantic-ui-react';
 import { LanguageContext } from '../contexts/LanguageContext';
@@ -6,25 +6,23 @@ import { AuthContext } from '../contexts/AuthContext';
 import logo from '../images/Logo.png'
 import { colors } from '../styles/colors';
 
+const langOptions = [
+    { key: 1, text: 'Polish', value: 'pl', },
+    { key: 2, text: 'English' , value: 'en', },
+  ];
 
 const Navbar = () => {
     const { lang, setLang } = useContext(LanguageContext);
     const { error, closeError } = useContext(AuthContext);
 
+    useEffect(() => {}, [error]);
 
-    useEffect(() => {}, [error])
-
-    const options = [
-        { key: 1, text: 'Polish', value: 'pl', },
-        { key: 2, text: 'English' , value: 'en', },
-      ];
-      console.log(lang)
       return !error ? (
         <Wrapper>
             <Logo src={logo} />
             <Menu compact>
                 <Dropdown
-                    options={options}
+                    options={langOptions}
                     simple
                     item
                     onChange={(e, {value}) => setLang(value)}
