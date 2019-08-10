@@ -14,36 +14,35 @@ const styles = {
     }
 };
 
-
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { authenticated, login, isLoading }  = useContext(AuthContext);
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
-    }
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value)
-    }
-
-
-    const show = () => {
-        const params = {
-            email,
-            password,
-        }
-       login(params);
-    }
+    const [keepLoggedIn, setKeepLoggedIn] = useState(false);
+    const { login, isLoading }  = useContext(AuthContext);
+    const loginParams = {
+        email,
+        password,
+    };
     return (
         <Wrapper>
             <Title>Log in</Title>
-            <Input placeholder='Email address' onChange={(e) => handleEmailChange(e)} />
-            <Input placeholder='Password' type="password"  onChange={(e) => handlePasswordChange(e)} />
-            <Checkbox label='Keep me logged in' style={styles.customCheckbox} />
-            <Button style={styles.customButton} onClick={show} disabled={isLoading} >Login</Button>
+            <Input
+                placeholder='Email address'
+                onChange={(e) => setEmail(e.target.value)} />
+            <Input
+                placeholder='Password'
+                type='password'
+                onChange={(e) => setPassword(e.target.value)} />
+            <Checkbox
+                label='Keep me logged in'
+                style={styles.customCheckbox}
+                onChange={() => setKeepLoggedIn(!keepLoggedIn)}
+                checked={keepLoggedIn} />
+            <Button
+                style={styles.customButton}
+                onClick={() => login(loginParams, keepLoggedIn)}
+                disabled={isLoading}>Login</Button>
         </Wrapper>
     )
 }

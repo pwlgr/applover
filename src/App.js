@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-} from "react-router-dom";
+} from 'react-router-dom';
 import { LanguageContextProvider } from './contexts/LanguageContext';
 import { AuthContextProvider } from './contexts/AuthContext'
 import Navbar from './components/Navbar';
@@ -19,7 +19,7 @@ const App = () => {
         </LanguageContextProvider>
       </AuthContextProvider>
       </div>
-  </Router>
+    </Router>
   )
 }
 

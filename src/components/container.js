@@ -1,15 +1,13 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import {   Route,
-} from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext';
 import Login from './Login';
 import Main from './main'
 
 const Container = () => {
-    const { authenticated } = useContext(AuthContext);
+    const { authenticated, token } = useContext(AuthContext);
     return (
-        <Wrapper>{authenticated ? <Main /> : <Login />}
+        <Wrapper>{authenticated || token ? <Main /> : <Login />}
         </Wrapper>
     )
 }

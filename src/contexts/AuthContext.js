@@ -15,6 +15,8 @@ const url = 'https://bench-api.applover.pl/api/v1/login';
 
 const getStatusType = (status) => Number(status.slice(0,3));
 
+const token = localStorage.getItem('token');
+
 const errors = {
     invalidBody: {
         errorMessage: 'Invalid email or password.'
@@ -29,29 +31,28 @@ export const AuthContextProvider = ({ children }) => {
     const [isLoading, setLoading] = useState(false);
     const [errorType, setErrorType] = useState(null);
 
-    const login = async (body) => {
-        setLoading(true)
+    const login = async (body, keepLoggedIn) => {
+        setLoading(true);
         try {
-            let response = await fetch(url, {
+            const response = await fetch(url, {
                 ...headers,
                 body: JSON.stringify(body)
             });
-            let { status } = await response.json()
-            switch(getStatusType(status)){
+            const data = await response.json();
+            switch(getStatusType(data.status)){
                 case 200: {
-                    console.log('good to go')
                     setAuthenticated(true)
                     setErrorType(null)
+                    console.log(data.token)
+                    keepLoggedIn && localStorage.setItem('token', data.token);
                     break;
                 }
                 case 401:{
-                    console.log('wrong password')
-                    setErrorType('invalidBody')
-                    setAuthenticated(false)
+                    setErrorType('invalidBody');
+                    setAuthenticated(false);
                     break;
                 }
                 case 500: {
-                    console.log('server error');
                     setErrorType('serverError');
                     setAuthenticated(false);
                     break;
@@ -63,7 +64,7 @@ export const AuthContextProvider = ({ children }) => {
             setLoading(false)
             return status;
         } catch(err){
-            setLoading(false)
+            setLoading(false);
             setAuthenticated(false);
             setErrorType('serverError');
             throw err;
@@ -80,6 +81,7 @@ export const AuthContextProvider = ({ children }) => {
         isLoading,
         error: errors[errorType],
         closeError,
+        token
     };
 
 

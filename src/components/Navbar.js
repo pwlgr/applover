@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Dropdown, Menu } from 'semantic-ui-react';
 import { LanguageContext } from '../contexts/LanguageContext';
@@ -8,32 +8,34 @@ import { colors } from '../styles/colors';
 
 
 const Navbar = () => {
+    const { lang, setLang } = useContext(LanguageContext);
+    const { error, closeError } = useContext(AuthContext);
 
-    const lang = useContext(LanguageContext);
-    const { error, closeError, authenticated } = useContext(AuthContext);
-    const closeErrorNav = () => {
-        closeError();
-    }
 
-    useEffect(() => {console.log('rerenderd', error)}, [error])
+    useEffect(() => {}, [error])
 
     const options = [
-        { key: 1, text: lang, value: 1 },
-        { key: 2, text: 'Choice 2', value: 2 },
-        { key: 3, text: 'Choice 3', value: 3 },
+        { key: 1, text: 'Polish', value: 'pl', },
+        { key: 2, text: 'English' , value: 'en', },
       ];
+      console.log(lang)
       return !error ? (
         <Wrapper>
             <Logo src={logo} />
             <Menu compact>
-                <Dropdown text='Dropdown' options={options} simple item />
+                <Dropdown
+                    options={options}
+                    simple
+                    item
+                    onChange={(e, {value}) => setLang(value)}
+                    defaultValue={lang} />
             </Menu>
         </Wrapper>
 
       ): (
         <ErrorWrapper>
             {error.errorMessage}
-            <span onClick={closeErrorNav}>✕</span>
+            <span onClick={closeError}>✕</span>
         </ErrorWrapper>
     );
 
