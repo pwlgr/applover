@@ -1,12 +1,16 @@
  export const colors = {
     WHITE: '#fff',
+    WHITE_DOOR: '#F4F2F2',
     GREEN: '#1de278',
     GRAY_DARKER: '#727272',
     GRAY_LIGHTER: '#7E7E7E',
-    GRAY_STEP_TEXT: '#848C93',
+    GRAY_TEXT: '#848C93',
+    GRAY_FILL: '#D8D8D8',
+    GRAY_DOOR: '#797474',
     RED: '#f24e33',
     PURPLE: '#77779D',
     GRAY_BLUE_LIGHTER: '#95A3AD',
     BLUE_LIGHTER: '#CDDBE5',
     BLUE_DARKER: '#6991B2',
+    BLACK: '#000',
 };

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import uuid from 'uuid/v4';
 import { colors } from '../styles/colors';
-import Panel from './Panel';
+import MainView from './MainView';
+import Navigation from './Navigation';
 
 const Configuration = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -9,7 +11,7 @@ const Configuration = () => {
     const generateSteps = () => {
         const steps = ['DOOR', 'DOOR DIVISION', 'COLOR']
         return steps.map((step, i) => (
-            <Step>
+            <Step key={uuid()}>
                 <StepCircle
                     key={i}
                     onClick={() => setActiveStep(i)}
@@ -17,7 +19,7 @@ const Configuration = () => {
                     activeStep={activeStep}>
                 </StepCircle>
                 <StepInfo>
-                    <span>STEP {i}</span>
+                    <span>STEP {i+1}</span>
                     <span>CHOOSE {step}</span>
                 </StepInfo>
             </Step>
@@ -28,7 +30,8 @@ const Configuration = () => {
     return (
         <Wrapper>
             <Steps>{generateSteps()}</Steps>
-            <Panel />
+            <MainView stepIndex={activeStep}/>
+            <Navigation stepIndex={activeStep} navigate={setActiveStep} />
         </Wrapper>
     )
 }
@@ -56,7 +59,7 @@ const Step = styled.div`
     align-items: center;
     margin: 10px 30px;
     font-size: 10px;
-    color: ${colors.GRAY_STEP_TEXT};
+    color: ${colors.GRAY_TEXT};
 
 `
 
@@ -75,8 +78,6 @@ const StepInfo = styled.div`
     justify-content: space-evenly;
     align-items: center;
     margin-top: 11px;
-
 `
-
 
 export default Configuration;

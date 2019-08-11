@@ -40,14 +40,15 @@ const Login = () => {
                 onChange={() => setKeepLoggedIn(!keepLoggedIn)}
                 checked={keepLoggedIn} />
 
-                <Modal 
-                open={isLoading}
-                trigger={<Button
-                    style={styles.customButton}
-                    onClick={() => login(loginParams, keepLoggedIn)}
-                    disabled={isLoading}>Login</Button>} basic size='small'>
+                <Modal
+                    dimmer='inverted' 
+                    open={isLoading}
+                    trigger={<Button
+                        style={styles.customButton}
+                        onClick={() => login(loginParams, keepLoggedIn)}
+                        disabled={isLoading}>Login</Button>} basic size='small'>
                 <Modal.Content dimmer='blurring'>
-                    <Loader content={`Sorry, didn't found time to make a progress bar..`} />
+                    <Loader content={`Sorry, didn't found time to make a progress bar...`} />
                 </Modal.Content>
               </Modal>
         </Wrapper>
