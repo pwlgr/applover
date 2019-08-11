@@ -6,8 +6,8 @@ import { AuthContext } from '../contexts/AuthContext'
 
 const styles = {
     customButton: {
-        background: colors.green,
-        color: colors.white
+        background: colors.GREEN,
+        color: colors.WHITE
     },
     customCheckbox: {
         textAlign: 'left'
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
 
 const Title = styled.span`
     font-size: 24px;
-    color: ${colors.gray};
+    color: ${colors.GRAY_DARKER};
 `
 
 export default Login;

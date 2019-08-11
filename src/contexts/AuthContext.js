@@ -79,6 +79,7 @@ export const AuthContextProvider = ({ children }) => {
         isLoading,
         error: errors[errorType],
         closeError,
+        setAuthenticated,
     };
 
 

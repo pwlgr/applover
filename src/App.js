@@ -5,7 +5,7 @@ import {
 import { LanguageContextProvider } from './contexts/LanguageContext';
 import { AuthContextProvider } from './contexts/AuthContext'
 import Navbar from './components/Navbar';
-import Container from './components/container'
+import Container from './components/Container'
 
 
 const App = () => {

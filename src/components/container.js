@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from '../contexts/AuthContext';
 import Login from './Login';
-import Main from './main';
+import Configuration from './Configuration';
 
 
 const getCookie = name => {
@@ -10,9 +10,10 @@ const getCookie = name => {
     return match ? match[2] : null;
   }
 const Container = () => {
-    const { authenticated } = useContext(AuthContext);
+    const { authenticated, setAuthenticated } = useContext(AuthContext);
+    getCookie('auth_token') && setAuthenticated(true);
     return (
-        <Wrapper>{authenticated || getCookie('auth_token') ? <Main /> : <Login />}
+        <Wrapper>{getCookie('auth_token') || authenticated   ? <Configuration /> : <Login />}
         </Wrapper>
     )
 }
