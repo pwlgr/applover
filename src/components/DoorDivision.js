@@ -34,7 +34,6 @@ const Wrapper = styled.div`
 
 const BarChanger = styled.div`
     display: flex;
-    height: 24px;
     margin: 10px;
     i {
         background: ${colors.BLUE_LIGHTER};

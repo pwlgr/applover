@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-} from 'react-router-dom';
 import { LanguageContextProvider } from './contexts/LanguageContext';
 import { AuthContextProvider } from './contexts/AuthContext'
 import { ConfigurationContextProvider } from './contexts/ConfigurationContext';
@@ -11,7 +8,6 @@ import Container from './components/Container'
 
 const App = () => {
   return (
-    <Router>
       <div className="App">
         <AuthContextProvider>
           <LanguageContextProvider>
@@ -22,7 +18,6 @@ const App = () => {
           </LanguageContextProvider>
         </AuthContextProvider>
       </div>
-    </Router>
   )
 }
 

@@ -2,7 +2,7 @@ import React,  { useState } from 'react';
 
 export const AuthContext = React.createContext();
 
-const headers = {
+const request = {
     method: 'POST',
     headers:{
         'Accept': 'application/json',
@@ -13,6 +13,10 @@ const headers = {
 
 const url = 'https://bench-api.applover.pl/api/v1/login';
 
+const getCookie = name => {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+}
 
 const errors = {
     invalidBody: {
@@ -24,22 +28,22 @@ const errors = {
 };
 
 export const AuthContextProvider = ({ children }) => {
-    const [authenticated, setAuthenticated] = useState(false);
     const [isLoading, setLoading] = useState(false);
     const [errorType, setErrorType] = useState(null);
+    const [token, setToken] = useState(null);
 
     const login = async (body, keepLoggedIn) => {
         setLoading(true);
         try {
             const response = await fetch(url, {
-                ...headers,
+                ...request,
                 body: JSON.stringify(body)
             });
             const data = await response.json();
             switch(response.status){
                 case 200: {
-                    setAuthenticated(true)
-                    setErrorType(null)
+                    setErrorType(null);
+                    setToken(data.token);
                     if(keepLoggedIn){
                         document.cookie =`auth_token=${data.token}`;
                     }
@@ -47,23 +51,20 @@ export const AuthContextProvider = ({ children }) => {
                 }
                 case 401:{
                     setErrorType('invalidBody');
-                    setAuthenticated(false);
                     break;
                 }
                 case 500: {
                     setErrorType('serverError');
-                    setAuthenticated(false);
                     break;
                 }
                 default: {
-                    setAuthenticated(false);
+                    setToken(null);
                 }
             }
             setLoading(false)
             return status;
         } catch(err){
             setLoading(false);
-            setAuthenticated(false);
             setErrorType('serverError');
             throw err;
         }
@@ -74,12 +75,11 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     const values = {
-        authenticated,
         login,
         isLoading,
         error: errors[errorType],
         closeError,
-        setAuthenticated,
+        token: getCookie('auth_token') || token,
     };
 
 

@@ -1,26 +1,22 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Form, Radio, Button } from 'semantic-ui-react'
+import {
+    Form,
+    Radio,
+    Button
+} from 'semantic-ui-react'
 import { colors } from '../styles/colors';
 import { ConfigurationContext } from '../contexts/ConfigurationContext';
 import { changeDoorColor } from '../actions/actions'
 
-const doorColors = {
-    black: {
-        background: colors.BLACK,
-    },
-    gray: {
-        background: colors.GRAY_DOOR,
-    },
-    white: {
-        background: colors.WHITE_DOOR,
-    }
-}
 
 const ColorPicker = () => {
     const [state, dispatch] = useContext(ConfigurationContext);
-    const { color } = state;
-    const handleChange = (e, {value}) => dispatch(changeDoorColor(value));
+    const {
+        color
+    } = state;
+    const handleChange = (e, { value }) => dispatch(changeDoorColor(value));
+
     return (
         <Wrapper>
             <span>Choose color</span>
@@ -69,24 +65,24 @@ const ColorPicker = () => {
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     display: flex;
     flex-direction: column;
 `
 
-const ColorCircle = styled.div`
+const ColorCircle = styled.div `
     height: 35px;
     width: 35px;
     border-radius: 100%;
 `
 
-const CirclesContainer = styled.div`
+const CirclesContainer = styled.div `
     display: flex;
     justify-content: space-around;
     align-items: center;
 `
 
-const Picker = styled.div`
+const Picker = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;

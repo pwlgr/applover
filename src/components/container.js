@@ -5,15 +5,10 @@ import Login from './Login';
 import Configuration from './Configuration';
 
 
-const getCookie = name => {
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? match[2] : null;
-  }
 const Container = () => {
-    const { authenticated, setAuthenticated } = useContext(AuthContext);
-    getCookie('auth_token') && setAuthenticated(true);
+    const { token } = useContext(AuthContext);
     return (
-        <Wrapper>{getCookie('auth_token') || authenticated   ? <Configuration /> : <Login />}
+        <Wrapper>{token ? <Configuration /> : <Login />}
         </Wrapper>
     )
 }

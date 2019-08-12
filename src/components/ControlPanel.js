@@ -1,9 +1,22 @@
-import React, { useState, useContext } from 'react';
+import React, {
+    useContext,
+    useState
+} from 'react';
 import styled from 'styled-components';
-import { Icon, Form, Radio, Modal, Input } from 'semantic-ui-react';
+import {
+    Icon,
+    Form,
+    Radio,
+    Modal,
+    Input
+} from 'semantic-ui-react';
 import { colors } from '../styles/colors'
 import { ConfigurationContext } from '../contexts/ConfigurationContext';
-import { changeDoorType, changeDoorWidth, changeDoorHeight } from '../actions/actions'
+import {
+    changeDoorType,
+    changeDoorWidth,
+    changeDoorHeight
+} from '../actions/actions'
 
 
 const styles = {
@@ -21,7 +34,11 @@ const styles = {
 
 const ControlPanel = () => {
     const [state, dispatch] = useContext(ConfigurationContext);
-    const { doorType, width, height } = state;
+    const {
+        doorType,
+        width,
+        height
+    } = state;
     const [doorTypeDialogVisible, setDoorTypeDialogVisible] = useState(false);
 
     return (
@@ -60,7 +77,7 @@ const ControlPanel = () => {
                             <DoorTypeExamples>
                                 <div>
                                     <span>Single</span>
-                                        <DoorTypeExample />
+                                    <DoorTypeExample />
                                 </div>
                                 <div>
                                     <span>Double</span>
@@ -79,49 +96,50 @@ const ControlPanel = () => {
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     height: 100%;
     display: flex;
     flex-direction: column;
     color: ${colors.GRAY_TEXT};
 `
+
 const StyledRadio = styled(Radio)`
     label {
         color: ${colors.GRAY_TEXT};
     }
 `
 
-const InfoBox = styled.div`
+const InfoBox = styled.div `
     color: ${colors.GRAY_TEXT};
     i {
         cursor: pointer;
     }
 `
 
-const DoorType = styled.div`
+const DoorType = styled.div `
     height: 300px;
     width: 100%;
 `
 
-const DoorTypeExample = styled.div`
+const DoorTypeExample = styled.div `
     width: 187px;
     height: 229px;
     background: ${colors.GRAY_FILL};
     margin-top: 20px;
 `
 
-const ModalHeader = styled.h2`
+const ModalHeader = styled.h2 `
     color: ${colors.BLUE_DARKER};
     border-bottom: 1px solid ${colors.BLUE_DARKER};
     font-weight: 300;
     text-align: left;
 `
-const DoorTypeExamples = styled.div`
+const DoorTypeExamples = styled.div `
     display: flex;
     justify-content: space-around;
 `
 
-const DoorSizeContent = styled.div`
+const DoorSizeContent = styled.div `
     display: flex;
     flex-direction: column;
 `
