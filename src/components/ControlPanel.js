@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Icon, Form, Radio, Modal, Input } from 'semantic-ui-react';
 import { colors } from '../styles/colors'
+import { ConfigurationContext } from '../contexts/ConfigurationContext';
+import { changeDoorType, changeDoorWidth, changeDoorHeight } from '../actions/actions'
 
 
 const styles = {
@@ -18,8 +20,10 @@ const styles = {
 }
 
 const ControlPanel = () => {
-    const [doorType, setDoorType] = useState('single');
+    const [state, dispatch] = useContext(ConfigurationContext);
+    const { doorType, width, height } = state;
     const [doorTypeDialogVisible, setDoorTypeDialogVisible] = useState(false);
+
     return (
         <Wrapper>
             <InfoBox>
@@ -32,7 +36,7 @@ const ControlPanel = () => {
                 name='radioGroup'
                 value='single'
                 checked={doorType === 'single'}
-                onChange={(e, { value }) => setDoorType(value)}
+                onChange={(e, { value }) => dispatch(changeDoorType(value))}
               />
             </Form.Field>
             <Form.Field>
@@ -41,7 +45,7 @@ const ControlPanel = () => {
                 name='radioGroup'
                 value='double'
                 checked={doorType === 'double'}
-                onChange={(e, { value }) => setDoorType(value)}
+                onChange={(e, { value }) => dispatch(changeDoorType(value))}
               />
             </Form.Field>
           </Form>
@@ -68,8 +72,8 @@ const ControlPanel = () => {
             </Modal>
             <DoorSizeContent>
                 <span>Door size</span>
-                <Input label='Width' placeholder='120cm' />
-                <Input label='Height'  placeholder='250cm'/>
+                <Input label='Width' placeholder={width} onChange={(e) => dispatch(changeDoorWidth(e.target.value))}/>
+                <Input label='Height'  placeholder={height} onChange={(e) => dispatch(changeDoorHeight(e.target.value))}/>
             </DoorSizeContent>
         </Wrapper>
     )

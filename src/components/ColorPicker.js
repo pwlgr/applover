@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Form, Radio, Button } from 'semantic-ui-react'
 import { colors } from '../styles/colors';
+import { ConfigurationContext } from '../contexts/ConfigurationContext';
+import { changeDoorColor } from '../actions/actions'
 
 const doorColors = {
     black: {
@@ -16,8 +18,9 @@ const doorColors = {
 }
 
 const ColorPicker = () => {
-    const [color, setColor] = useState('black');
-    const handleChange = (e, {value}) => setColor(value);
+    const [state, dispatch] = useContext(ConfigurationContext);
+    const { color } = state;
+    const handleChange = (e, {value}) => dispatch(changeDoorColor(value));
     return (
         <Wrapper>
             <span>Choose color</span>

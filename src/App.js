@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import { LanguageContextProvider } from './contexts/LanguageContext';
 import { AuthContextProvider } from './contexts/AuthContext'
+import { ConfigurationContextProvider } from './contexts/ConfigurationContext';
 import Navbar from './components/Navbar';
 import Container from './components/Container'
 
@@ -15,7 +16,9 @@ const App = () => {
         <AuthContextProvider>
           <LanguageContextProvider>
             <Navbar />
-            <Container />
+            <ConfigurationContextProvider>
+              <Container />
+            </ConfigurationContextProvider>
           </LanguageContextProvider>
         </AuthContextProvider>
       </div>
