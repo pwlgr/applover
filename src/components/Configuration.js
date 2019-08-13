@@ -5,9 +5,8 @@ import { colors } from '../styles/colors';
 import MainView from './MainView';
 import Navigation from './Navigation';
 
-const Configuration = (props) => {
+const Configuration = () => {
     const [activeStep, setActiveStep] = useState(0);
-    console.log(props)
     const generateSteps = () => {
         const steps = ['DOOR', 'DOOR DIVISION', 'COLOR']
         return steps.map((step, i) => (
@@ -30,8 +29,8 @@ const Configuration = (props) => {
     return (
         <Wrapper>
             <Steps>{generateSteps()}</Steps>
-            <MainView stepIndex={activeStep}/>
-            <Navigation stepIndex={activeStep} navigate={setActiveStep} />
+                <MainView stepIndex={activeStep}/>
+                <Navigation stepIndex={activeStep} navigate={setActiveStep} />
         </Wrapper>
     )
 }

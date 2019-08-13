@@ -29,9 +29,10 @@ export default Container;
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 80vh;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif !important;
+  margin-bottom: 20px;
 `

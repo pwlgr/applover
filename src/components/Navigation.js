@@ -44,6 +44,9 @@ const Navigation = ({ stepIndex, navigate }) => {
 
 const Wrapper = styled.div`
     display: flex;
+    width:80%;
+    margin:0 auto;
+    justify-content: flex-end;
 `
 
 const BackButton = styled(Button)`

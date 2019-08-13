@@ -89,8 +89,14 @@ const ControlPanel = () => {
             </Modal>
             <DoorSizeContent>
                 <span>Door size</span>
-                <Input label='Width' placeholder={width} onChange={(e) => dispatch(changeDoorWidth(e.target.value))}/>
-                <Input label='Height'  placeholder={height} onChange={(e) => dispatch(changeDoorHeight(e.target.value))}/>
+                <Dimension>
+                    <Input label='Width' value={width} onChange={(e) => dispatch(changeDoorWidth(e.target.value))}/>
+                    <span>cm</span>
+                </Dimension>
+                <Dimension>
+                    <Input label='Height'  value={height} onChange={(e) => dispatch(changeDoorHeight(e.target.value))}/>
+                    <span>cm</span>
+                </Dimension>
             </DoorSizeContent>
         </Wrapper>
     )
@@ -142,6 +148,18 @@ const DoorTypeExamples = styled.div `
 const DoorSizeContent = styled.div `
     display: flex;
     flex-direction: column;
+    input {
+        width: 80px;
+    }
+    .label {
+        width: 70px;
+    }
+`
+
+const Dimension = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 `
 
 export default ControlPanel;

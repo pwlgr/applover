@@ -8,6 +8,7 @@ import {
 import { colors } from '../styles/colors';
 import { ConfigurationContext } from '../contexts/ConfigurationContext';
 import { changeDoorColor } from '../actions/actions'
+import ShareButton from './ShareButton';
 
 
 const ColorPicker = () => {
@@ -60,7 +61,7 @@ const ColorPicker = () => {
                     </Form.Field>
                 </Form>
             </CirclesContainer>
-            <Button>SHARE</Button>
+            <ShareButton state={state} />
         </Wrapper>
     )
 }

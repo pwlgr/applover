@@ -44,11 +44,12 @@ const Login = () => {
                     dimmer='inverted' 
                     open={isLoading}
                     trigger={<Button
+                        loading={isLoading}
                         style={styles.customButton}
                         onClick={() => login(loginParams, keepLoggedIn)}
                         disabled={isLoading}>Login</Button>} basic size='small'>
                 <Modal.Content dimmer='blurring'>
-                    <Loader content={`Sorry, didn't found time to make a progress bar...`} />
+                    <Loader />
                 </Modal.Content>
               </Modal>
         </Wrapper>

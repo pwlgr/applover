@@ -20,6 +20,7 @@ import logo from '../images/Logo.png'
 import {
     colors
 } from '../styles/colors';
+import messages from '../messages/messages';
 
 const langOptions = [{
         key: 1,
@@ -77,14 +78,18 @@ const Navbar = () => {
             }
         });
         const data = await response.json();
-        data ? setOrganizationData(Object.entries(data).map(el => <p>{`${el[0]}:${el[1]}`}</p>)) : <span>Error occured. Try again. </span>
+        if(data){
+            setOrganizationData(Object.entries(data).map(el => <p>{`${el[0]}:${el[1]}`}</p>))
+        } else {
+            setOrganizationData(<span>Error occured. Try again. </span>);
+        }
     }
     return !error ? (
         <Wrapper>
             <Logo src={logo} />
             <Organization>
                 <LanguageWrapper>
-                <LanguageTitle>Select language:</LanguageTitle>
+                <LanguageTitle>{messages.selectLanguage[lang]}</LanguageTitle>
                   <Menu compact>
                       <Dropdown
                           options={langOptions}
@@ -98,7 +103,7 @@ const Navbar = () => {
                   content={organizationData}
                   on='click'
                   basic
-                  trigger={token && <Button style={styles.organizationButton} onClick={getOrganizationData}>My organization</Button>}
+                  trigger={token && <Button style={styles.organizationButton} onClick={getOrganizationData}>{messages.myOrganization[lang]}</Button>}
                   />
             </Organization>
         </Wrapper>
