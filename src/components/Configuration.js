@@ -5,9 +5,9 @@ import { colors } from '../styles/colors';
 import MainView from './MainView';
 import Navigation from './Navigation';
 
-const Configuration = () => {
+const Configuration = (props) => {
     const [activeStep, setActiveStep] = useState(0);
-
+    console.log(props)
     const generateSteps = () => {
         const steps = ['DOOR', 'DOOR DIVISION', 'COLOR']
         return steps.map((step, i) => (

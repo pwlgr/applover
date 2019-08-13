@@ -1,5 +1,5 @@
 import React,  { useState } from 'react';
-
+import { withRouter } from 'react-router-dom';
 export const AuthContext = React.createContext();
 
 const request = {
@@ -27,7 +27,7 @@ const errors = {
     }
 };
 
-export const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ children, history }) => {
     const [isLoading, setLoading] = useState(false);
     const [errorType, setErrorType] = useState(null);
     const [token, setToken] = useState(null);
@@ -47,6 +47,7 @@ export const AuthContextProvider = ({ children }) => {
                     if(keepLoggedIn){
                         document.cookie =`auth_token=${data.token}`;
                     }
+                    history.push("/landing");
                     break;
                 }
                 case 401:{
@@ -62,7 +63,6 @@ export const AuthContextProvider = ({ children }) => {
                 }
             }
             setLoading(false)
-            return status;
         } catch(err){
             setLoading(false);
             setErrorType('serverError');
@@ -90,4 +90,4 @@ export const AuthContextProvider = ({ children }) => {
     )
 };
 
-
+export default withRouter(AuthContextProvider);

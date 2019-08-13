@@ -1,14 +1,26 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext';
 import Login from './Login';
 import Configuration from './Configuration';
+import { ProtectedRoute} from '../routes/protectedRoute'
 
 
-const Container = () => {
+const Container = ({ history }) => {
     const { token } = useContext(AuthContext);
     return (
-        <Wrapper>{token ? <Configuration /> : <Login />}
+        <Wrapper>
+            <Switch>
+                <Route
+                    exact
+                    path="/"
+                    component={() => token ? <Redirect to="/landing" /> : <Redirect to="/login" />}
+                />
+                <ProtectedRoute exact path="/landing" component={Configuration} />
+                <Route exact path="/login" component={Login} />
+                <Route path="*" component={() => <h2>404 Page not found</h2>} />
+            </Switch>
         </Wrapper>
     )
 }
