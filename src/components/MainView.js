@@ -22,7 +22,6 @@ const Wrapper = styled.div`
     display: flex;
     height: 100%;
     width:80%;
-    border: 1px solid red;
     margin: 0 auto;
 `
 

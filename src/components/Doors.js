@@ -18,41 +18,91 @@ const Doors = () => {
     const elements = new Array(windows)
         .fill(null)
         .map((u, i) => i)
+    const WidthDimension = doorType === 'double' ? width*2 : width
 
     return (
         <Wrapper>
-            <Door beams={beams} posts={posts} >
+            <WidthLine doorType={doorType}>
+                <WidthNumber>
+                    {WidthDimension}
+                </WidthNumber>
+            </WidthLine>
+            <DoorContainer>
+                <HeightLine />
+                <HeightNumber>{height}</HeightNumber>
+                <Door beams={beams} posts={posts} >
+                    {elements.map(el => <Window doorColor={doorColors[color]} key={uuid()}/>)}
+                </Door>
+                {doorType === 'double' && <Door beams={beams} posts={posts} >
                 {elements.map(el => <Window doorColor={doorColors[color]} key={uuid()}/>)}
-            </Door>
-            {doorType === 'double' && <Door beams={beams} posts={posts} >
-            {elements.map(el => <Window doorColor={doorColors[color]} key={uuid()}/>)}
-            </Door>}
+                </Door>}
+            </DoorContainer>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
     height: 100%;
-    border: 2px solid green;
     width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    border-right: 1px solid ${colors.GRAY_FILL}
+`
+
+const Door = styled.div`
+    height: 280px;
+    width: 146px;
+    display: grid;
+    grid-template-rows: repeat(${ ({beams}) => beams + 1}, 1fr);
+    grid-template-columns: repeat(${ ({posts}) => posts + 1}, 1fr);
+    margin: 3px;
+    
+`
+
+const Window = styled.div`
+    border:4px solid ${ ({ doorColor }) => doorColor};
+    width: auto;
+    height: auto;
+`
+
+const DoorContainer = styled.div`
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
-const Door = styled.div`
-    height: 300px;
-    width: 146px;
-    display: grid;
-    grid-template-rows: repeat(${({beams}) => beams + 1}, 1fr);
-    grid-template-columns: repeat(${({posts}) => posts + 1}, 1fr);
-    margin: 5px;
+const HeightLine = styled.div`
+    height: 280px;
+    border-left: 2px solid ${colors.GRAY_DARKER};
+    z-index: 0;
 `
 
-const Window = styled.div`
-    border:4px solid ${({ doorColor}) => doorColor};
-    width: auto;
-    height: auto;
+const HeightNumber = styled.span`
+    background: ${colors.WHITE};
+    border:1px solid ${colors.GRAY_DARKER};
+    right: 10px;
+    z-index: 1;
+    right: 14px;
+    position: relative;
+`
+
+const WidthLine = styled.div`
+    width: ${ ({ doorType }) => doorType === 'double' ? '295px': '146px'};
+    border-bottom: 2px solid ${colors.GRAY_DARKER};
+    text-align: center;
+    margin-left: 28px;
+`
+
+const WidthNumber = styled.span`
+    background: ${colors.WHITE};
+    border:1px solid ${colors.GRAY_DARKER};
+    z-index: 1;
+    top: 8px;
+    position: relative;
 `
 
 export default Doors;

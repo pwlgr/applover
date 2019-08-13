@@ -4,6 +4,7 @@ import React, {
     useState
 } from 'react';
 import styled from 'styled-components';
+import uuid from 'uuid/v4';
 import {
     Dropdown,
     Menu,
@@ -79,7 +80,7 @@ const Navbar = () => {
         });
         const data = await response.json();
         if(data){
-            setOrganizationData(Object.entries(data).map(el => <p>{`${el[0]}:${el[1]}`}</p>))
+            setOrganizationData(Object.entries(data).map(el => <p key={uuid()}>{`${el[0]}:${el[1]}`}</p>))
         } else {
             setOrganizationData(<span>Error occured. Try again. </span>);
         }
@@ -100,10 +101,10 @@ const Navbar = () => {
                   </Menu>
                 </LanguageWrapper>
                   <Popup
-                  content={organizationData}
-                  on='click'
-                  basic
-                  trigger={token && <Button style={styles.organizationButton} onClick={getOrganizationData}>{messages.myOrganization[lang]}</Button>}
+                    content={organizationData}
+                    on='click'
+                    basic
+                    trigger={token && <Button style={styles.organizationButton} onClick={getOrganizationData}>{messages.myOrganization[lang]}</Button>}
                   />
             </Organization>
         </Wrapper>
