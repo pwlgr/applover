@@ -1,5 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Input, Button, Checkbox, Modal, Loader } from 'semantic-ui-react'
+import {
+    Input,
+    Button,
+    Checkbox,
+    Modal,
+    Loader
+} from 'semantic-ui-react'
 import styled from 'styled-components';
 import { colors } from '../styles/colors'
 import { AuthContext } from '../contexts/AuthContext'
@@ -19,7 +25,10 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [keepLoggedIn, setKeepLoggedIn] = useState(false);
-    const { login, isLoading }  = useContext(AuthContext);
+    const {
+        login,
+        isLoading
+    } = useContext(AuthContext);
     const loginParams = {
         email,
         password,
@@ -47,16 +56,20 @@ const Login = () => {
                         loading={isLoading}
                         style={styles.customButton}
                         onClick={() => login(loginParams, keepLoggedIn)}
-                        disabled={isLoading}>Login</Button>} basic size='small'>
-                <Modal.Content dimmer='blurring'>
-                    <Loader />
-                </Modal.Content>
+                        disabled={isLoading}>
+                        Login</Button>
+                    } 
+                        basic
+                        size='small'>
+                    <Modal.Content dimmer='blurring'>
+                        <Loader />
+                    </Modal.Content>
               </Modal>
         </Wrapper>
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     display: flex;
     flex-direction: column;
     width: 397px;
@@ -65,7 +78,7 @@ const Wrapper = styled.div`
     text-align: center;
 `
 
-const Title = styled.span`
+const Title = styled.span `
     font-size: 24px;
     color: ${colors.GRAY_DARKER};
 `

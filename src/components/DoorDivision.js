@@ -1,14 +1,20 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Input, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import { colors } from '../styles/colors';
 import { ConfigurationContext } from '../contexts/ConfigurationContext';
-import { changeDoorBeams, changeDoorPosts } from '../actions/actions';
+import {
+    changeDoorBeams,
+    changeDoorPosts
+} from '../actions/actions';
 
 const DoorDivision = () => {
 
     const [state, dispatch] = useContext(ConfigurationContext);
-    const { beams, posts } = state;
+    const {
+        beams,
+        posts
+    } = state;
 
     return (
         <Wrapper>
@@ -29,14 +35,14 @@ const DoorDivision = () => {
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     display: flex;
     flex-direction: column;
     color: ${colors.GRAY_TEXT};
     font-family: 'Robott', sans-serif;
 `
 
-const BarChanger = styled.div`
+const BarChanger = styled.div `
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -58,7 +64,7 @@ const BarChanger = styled.div`
     }
 `
 
-const BoxValue = styled.div`
+const BoxValue = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;

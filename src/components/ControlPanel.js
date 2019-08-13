@@ -1,7 +1,4 @@
-import React, {
-    useContext,
-    useState
-} from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import {
     Icon,
@@ -17,7 +14,6 @@ import {
     changeDoorWidth,
     changeDoorHeight
 } from '../actions/actions'
-
 
 const styles = {
     customModal: {
@@ -156,7 +152,7 @@ const DoorSizeContent = styled.div `
     }
 `
 
-const Dimension = styled.div`
+const Dimension = styled.div `
     display: flex;
     justify-content: space-around;
     align-items: center;

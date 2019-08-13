@@ -11,16 +11,10 @@ import {
     Button,
     Popup
 } from 'semantic-ui-react';
-import {
-    LanguageContext
-} from '../contexts/LanguageContext';
-import {
-    AuthContext
-} from '../contexts/AuthContext';
+import { LanguageContext } from '../contexts/LanguageContext';
+import { AuthContext } from '../contexts/AuthContext';
 import logo from '../images/Logo.png'
-import {
-    colors
-} from '../styles/colors';
+import { colors } from '../styles/colors';
 import messages from '../messages/messages';
 
 const langOptions = [{
@@ -56,7 +50,6 @@ const request = {
 }
 
 const Navbar = () => {
-    const [organizationVisible, setOrganizationVisible] = useState(false);
     const [organizationData, setOrganizationData] = useState({})
     const {
         lang,
@@ -79,7 +72,7 @@ const Navbar = () => {
             }
         });
         const data = await response.json();
-        if(data){
+        if (data !== 'error') {
             setOrganizationData(Object.entries(data).map(el => <p key={uuid()}>{`${el[0]}:${el[1]}`}</p>))
         } else {
             setOrganizationData(<span>Error occured. Try again. </span>);

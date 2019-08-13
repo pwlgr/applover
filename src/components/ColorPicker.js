@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import {
-    Form,
-    Radio,
-    Button
-} from 'semantic-ui-react'
+import { Form, Radio } from 'semantic-ui-react'
 import { colors } from '../styles/colors';
 import { ConfigurationContext } from '../contexts/ConfigurationContext';
 import { changeDoorColor } from '../actions/actions'
@@ -13,9 +9,7 @@ import ShareButton from './ShareButton';
 
 const ColorPicker = () => {
     const [state, dispatch] = useContext(ConfigurationContext);
-    const {
-        color
-    } = state;
+    const { color } = state;
     const handleChange = (e, { value }) => dispatch(changeDoorColor(value));
 
     return (

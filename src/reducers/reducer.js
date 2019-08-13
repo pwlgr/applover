@@ -18,12 +18,12 @@ export const initialState = {
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        case CHANGE_DOOR_TYPE: return {...state, doorType: action.doorType };
-        case CHANGE_WIDTH: return {...state, width: action.width };
-        case CHANGE_HEIGHT: return {...state, height: action.height };
-        case CHANGE_BEAMS: return {...state, beams: action.beams }
-        case CHANGE_POSTS: return {...state, posts: action.posts }
-        case CHANGE_COLOR: return {...state, color: action.color }
+        case CHANGE_DOOR_TYPE: return { ...state, doorType: action.doorType };
+        case CHANGE_WIDTH: return { ...state, width: action.width };
+        case CHANGE_HEIGHT: return { ...state, height: action.height };
+        case CHANGE_BEAMS: return { ...state, beams: action.beams }
+        case CHANGE_POSTS: return { ...state, posts: action.posts }
+        case CHANGE_COLOR: return { ...state, color: action.color }
         default: throw new Error('Unexpected action');
     }
 }

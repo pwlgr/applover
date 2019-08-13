@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { LanguageContextProvider } from './contexts/LanguageContext';
 import AuthContextProvider from './contexts/AuthContext'
 import { ConfigurationContextProvider } from './contexts/ConfigurationContext';

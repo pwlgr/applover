@@ -21,7 +21,10 @@ const customStyles = {
 
 }
 
-const Navigation = ({ stepIndex, navigate }) => {
+const Navigation = ({
+    stepIndex,
+    navigate
+}) => {
     return (
         <Wrapper>
             {stepIndex === 0 ? <Button
@@ -42,22 +45,11 @@ const Navigation = ({ stepIndex, navigate }) => {
 
 
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     display: flex;
     width:80%;
     margin:0 auto;
     justify-content: flex-end;
-`
-
-const BackButton = styled(Button)`
-    background: ${colors.WHITE};
-    font-size: 14px;
-    width: 126px;
-`
-
-const ForwardButton = styled(Button)`
-    background: ${colors.BLUE_DARKER};
-    font-size: 14px;
 `
 
 export default Navigation;

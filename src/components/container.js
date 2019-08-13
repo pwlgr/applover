@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Switch, Route, Redirect } from 'react-router-dom'
+import {
+    Switch,
+    Route,
+    Redirect
+} from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext';
 import Login from './Login';
 import Configuration from './Configuration';
-import { ProtectedRoute} from '../routes/protectedRoute'
-
+import { ProtectedRoute } from '../routes/protectedRoute'
 
 const Container = ({ history }) => {
     const { token } = useContext(AuthContext);
@@ -27,7 +30,7 @@ const Container = ({ history }) => {
 
 export default Container;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
   width: 100vw;
   height: 500px;
   display: flex;

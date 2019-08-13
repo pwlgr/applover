@@ -35,14 +35,14 @@ const Configuration = () => {
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     display: flex;
     width: 80%;
     height: 100%;
     flex-direction: column;
     font-family: 'Robot', sans-serif;
 `
-const Steps = styled.div`
+const Steps = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +50,7 @@ const Steps = styled.div`
     margin: 20px;
 `
 
-const Step = styled.div`
+const Step = styled.div `
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -62,16 +62,16 @@ const Step = styled.div`
 
 `
 
-const StepCircle = styled.div`
+const StepCircle = styled.div `
     width: 46px;
     height: 46px;
     border-radius: 100%;
-    border: 20px solid ${({index, activeStep}) => index === activeStep ? colors.GRAY_BLUE_LIGHTER : colors.BLUE_LIGHTER};
-    background: ${({index, activeStep}) => index === activeStep ? colors.WHITE : colors.BLUE_DARKER};
+    border: 20px solid ${ ({index, activeStep}) => index === activeStep ? colors.GRAY_BLUE_LIGHTER : colors.BLUE_LIGHTER};
+    background: ${ ({index, activeStep}) => index === activeStep ? colors.WHITE : colors.BLUE_DARKER};
     box-sizing: border-box;
 `
 
-const StepInfo = styled.div`
+const StepInfo = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
